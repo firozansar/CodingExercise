@@ -1,10 +1,7 @@
 package info.firozansari.codingexercise.ui.main
 
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -12,9 +9,7 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
 import info.firozansari.codingexercise.R
 import info.firozansari.codingexercise.data.remote.Earthquake
-import info.firozansari.codingexercise.testutil.BaseMockParser.Companion.EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID
 import info.firozansari.codingexercise.testutil.InstrumentedMockParser
-import info.firozansari.codingexercise.testutil.RecyclerViewItemCountAssertion
 import info.firozansari.codingexercise.ui.main.MockMainViewModel.quakesResult
 import info.firozansari.codingexercise.util.EarthquakeResult
 import io.mockk.every
