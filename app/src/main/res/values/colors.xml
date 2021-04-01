@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">#EBC900</color>
+    <color name="primary_dark">#EBC900</color>
+    <color name="secondary">#EBC900</color>
+    <color name="status_bar">#3E3E3F</color>
+    <color name="background_dark">#4D4D4F</color>
+    <color name="button_text_dark">#3B3C3E</color>
+    <color name="text_primary">#DE000000</color>
+    <color name="text_secondary">#99000000</color>
+    <color name="text_warning">#FF9900</color>
+    <color name="text_error">#CC0E0E</color>
+    <color name="text_hint">#BCBCBC</color>
+    <color name="text_link">#006FFF</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +19,5 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#D32F2F</color>
 </resources>
