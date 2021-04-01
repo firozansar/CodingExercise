@@ -1,4 +1,10 @@
 package info.firozansari.codingexercise.ui.main
 
-class MainViewModel {
+import androidx.lifecycle.ViewModel
+import info.firozansari.codingexercise.data.repository.EarthquakeRepository
+
+class MainViewModel (
+        private val earthquakeRepository: EarthquakeRepository,
+) : ViewModel() {
+
 }

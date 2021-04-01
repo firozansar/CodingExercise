@@ -8,7 +8,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    //private val mainViewModel by viewModel<MainViewModel>()
+    private val mainViewModel by viewModel<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
 
 
