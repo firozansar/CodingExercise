@@ -17,7 +17,7 @@ android {
 
         buildConfigField "String", "BASE_API_URL", "\"http://api.geonames.org/\""
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "info.firozansari.codingexercise.InstrumentedRunner"
     }
 
     buildTypes {
@@ -85,6 +85,8 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_core_version"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_core_version"
+    androidTestImplementation "io.mockk:mockk:$mockk_version"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
     androidTestImplementation "org.koin:koin-test:$koin_version"
     androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$uiautomator_version"
 }
