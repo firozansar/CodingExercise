@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.Instrumentation
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
+import info.firozansari.codingexercise.di.databaseModule
 import info.firozansari.codingexercise.di.networkModule
 import info.firozansari.codingexercise.di.repositoryModule
 import info.firozansari.codingexercise.di.viewModelModule
@@ -26,7 +27,7 @@ class AppTest : Application() {
 
         startKoin {
             androidContext(applicationContext)
-            modules(listOf(networkModule, repositoryModule, viewModelModule))
+            modules(listOf(networkModule, databaseModule, repositoryModule, viewModelModule))
         }
     }
 

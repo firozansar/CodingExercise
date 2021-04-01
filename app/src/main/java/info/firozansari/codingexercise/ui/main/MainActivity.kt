@@ -9,6 +9,9 @@ import android.widget.Toast
 import info.firozansari.codingexercise.R
 import info.firozansari.codingexercise.data.remote.Earthquake
 import info.firozansari.codingexercise.databinding.ActivityMainBinding
+import info.firozansari.codingexercise.util.EarthquakeResult
+import info.firozansari.codingexercise.util.getMapIntent
+import info.firozansari.codingexercise.util.guardLet
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() , MainViewHolder.ItemClickListener {
@@ -25,7 +28,14 @@ class MainActivity : AppCompatActivity() , MainViewHolder.ItemClickListener {
         setContentView(binding.root)
 
         setupRecyclerView()
+        mainViewModel.fetchEarthquakes()
 
+        mainViewModel.quakesResult.observe(this, {
+            when (it) {
+                is EarthquakeResult.Success -> populate(it.items)
+                is EarthquakeResult.Error -> populateError(it.error)
+            }
+        })
     }
 
     private fun setupRecyclerView() {
@@ -34,8 +44,33 @@ class MainActivity : AppCompatActivity() , MainViewHolder.ItemClickListener {
         binding.mainList.adapter = mainAdapter
     }
 
+    private fun populate(models: List<Earthquake>) {
+        binding.mainList.visibility = View.VISIBLE
+        earthquakeList.clear()
+        earthquakeList.addAll(models)
+        mainAdapter.notifyDataSetChanged()
+    }
+
+    private fun populateError(error: String) {
+        showToast(error)
+    }
+
+
+    private fun showToast(msg: String) {
+        val toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
+    }
 
     override fun onItemClick(item: Earthquake, position: Int) {
-        // TODO
+        val (lat, lon) = guardLet(item.latitude, item.longitude) {
+            showToast(getString(R.string.invalid_coordinates))
+            return
+        }
+        try {
+            startActivity(getMapIntent(lat, lon))
+        } catch (e: ActivityNotFoundException) {
+            e.printStackTrace()
+        }
     }
 }

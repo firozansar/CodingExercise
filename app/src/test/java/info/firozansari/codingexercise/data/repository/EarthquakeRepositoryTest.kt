@@ -2,7 +2,10 @@ package info.firozansari.codingexercise.data.repository
 
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
+import info.firozansari.codingexercise.data.local.EarthquakeDao
+import info.firozansari.codingexercise.data.local.EarthquakeEntity
 import info.firozansari.codingexercise.data.remote.ApiService
+import info.firozansari.codingexercise.data.remote.Earthquake
 import info.firozansari.codingexercise.testutil.TestData
 import info.firozansari.codingexercise.testutil.UnitTestSetup
 import junit.framework.Assert.assertEquals
@@ -19,6 +22,9 @@ class EarthquakeRepositoryTest : UnitTestSetup() {
     @Mock
     private lateinit var mockApiService: ApiService
 
+    @Mock
+    private lateinit var mockDao: EarthquakeDao
+
     private lateinit var subject: EarthquakeRepository
 
     private val testData: TestData = TestData()
@@ -28,9 +34,25 @@ class EarthquakeRepositoryTest : UnitTestSetup() {
     }
 
     override fun initialiseClassUnderTest() {
-        subject = EarthquakeRepository(mockApiService)
+        subject = EarthquakeRepository(mockApiService, mockDao)
     }
 
+    @Test
+    fun `get local earthquake list`() {
+        // when
+        runBlocking {
+            // given
+            val mockEntityList = testData.getMockDataFromDBWithAllItemsValid()
+            Mockito.`when`(mockDao.getAllEarthquakes()).thenReturn(mockEntityList)
+
+            // when
+            val items = subject.getEarthquakesFromDB()
+
+            // then
+            verify(mockDao, times(1)).getAllEarthquakes()
+            verifyLocalList(items, mockEntityList)
+        }
+    }
 
     @Test
     fun `get remote earthquake list `() {
@@ -66,6 +88,38 @@ class EarthquakeRepositoryTest : UnitTestSetup() {
 
             assertEquals(remoteItems, mockFeed)
         }
+    }
+
+    private fun verifyLocalList(
+        actualItems: List<Earthquake>,
+        entityList: List<EarthquakeEntity>
+    ) {
+        if (entityList.isNullOrEmpty()) {
+            return
+        }
+
+        entityList.forEach lit@{ entity ->
+            if (entity.id.isNullOrBlank()) return@lit
+            actualItems.forEach { actualItem ->
+                if (entity.id == actualItem.id) {
+                    verifyEachLocalItem(actualItem, entity)
+                    return@lit
+                }
+            }
+        }
+    }
+
+    private fun verifyEachLocalItem(
+        actual: Earthquake,
+        expected: EarthquakeEntity
+    ) {
+        assertEquals(expected.id, actual.id)
+        assertEquals(expected.datetime, actual.datetime)
+        assertEquals(expected.depth, actual.depth)
+        assertEquals(expected.longitude, actual.longitude)
+        assertEquals(expected.latitude, actual.latitude)
+        assertEquals(expected.source, actual.source)
+        assertEquals(expected.magnitude, actual.magnitude)
     }
 
 }

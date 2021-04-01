@@ -4,5 +4,5 @@ import info.firozansari.codingexercise.data.repository.EarthquakeRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single { EarthquakeRepository(get()) }
+    single { EarthquakeRepository(get(), get()) }
 }

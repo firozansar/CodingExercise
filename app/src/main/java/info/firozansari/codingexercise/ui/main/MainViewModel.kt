@@ -11,10 +11,12 @@ import info.firozansari.codingexercise.util.Constant.SOUTH
 import info.firozansari.codingexercise.util.Constant.USERNAME
 import info.firozansari.codingexercise.util.Constant.WEST
 import info.firozansari.codingexercise.util.EarthquakeResult
+import info.firozansari.codingexercise.util.NetworkManager
 import kotlinx.coroutines.launch
 
 class MainViewModel (
         private val earthquakeRepository: EarthquakeRepository,
+        private val networkManager: NetworkManager
 ) : ViewModel() {
 
         companion object {
@@ -26,7 +28,8 @@ class MainViewModel (
                 get() = mQuakesResult
 
         fun fetchEarthquakes() {
-          fetchRemoteEarthquakes()
+                if (networkManager.isOnline()) fetchRemoteEarthquakes()
+                else fetchLocalEarthquakes()
         }
 
         fun fetchRemoteEarthquakes() {
@@ -39,6 +42,7 @@ class MainViewModel (
                                         remoteList.earthquakes.let{  eqList ->
                                                 eqList?.let {
                                                         mQuakesResult.value = EarthquakeResult.Success(it)
+                                                        earthquakeRepository.storeEarthQuakesInDB(it)
                                                 }
                                         }
                                 }
@@ -49,7 +53,14 @@ class MainViewModel (
         }
 
         fun fetchLocalEarthquakes() {
-
+                viewModelScope.launch {
+                        try {
+                                val localList = earthquakeRepository.getEarthquakesFromDB()
+                                mQuakesResult.value = EarthquakeResult.Success(localList)
+                        } catch (e: Exception) {
+                                EarthquakeResult.Error(getErrorMessage(e))
+                        }
+                }
         }
 
         private fun getErrorMessage(e: Exception): String {

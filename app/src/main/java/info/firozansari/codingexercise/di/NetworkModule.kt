@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import info.firozansari.codingexercise.BuildConfig
 import info.firozansari.codingexercise.data.remote.ApiService
+import info.firozansari.codingexercise.util.NetworkManager
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -35,7 +36,9 @@ val networkModule = module {
             .build()
     }
 
-
+    single {
+        NetworkManager(get())
+    }
 
     factory {
         get<Retrofit>().create(ApiService::class.java)

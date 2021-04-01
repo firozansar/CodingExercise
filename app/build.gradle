@@ -59,6 +59,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+
     //DI - Koin
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-core:$koin_version"
@@ -90,4 +96,5 @@ dependencies {
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
     androidTestImplementation "org.koin:koin-test:$koin_version"
     androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$uiautomator_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
 }

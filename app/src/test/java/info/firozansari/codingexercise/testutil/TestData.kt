@@ -3,7 +3,10 @@ package info.firozansari.codingexercise.testutil
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
+import info.firozansari.codingexercise.data.local.EarthquakeEntity
 import info.firozansari.codingexercise.data.remote.ApiResponse
+import info.firozansari.codingexercise.util.toEntityList
+import info.firozansari.codingexercise.util.toItems
 
 class TestData {
     val mockNorthBound = 44.1f
@@ -20,7 +23,10 @@ class TestData {
             "test_earthquake_data_valid_items.json"
     }
 
-    // get json object
+    // get quake local items (database entities)
+
+    fun getMockDataFromDBWithAllItemsValid(): List<EarthquakeEntity> =
+        getMockQuakeFeedAllIdsValid().toItems().toEntityList()
 
     fun getMockQuakeFeedAllIdsValid(): ApiResponse =
         getMockApiResponse(getMockQuakeDataAllIdsValid())

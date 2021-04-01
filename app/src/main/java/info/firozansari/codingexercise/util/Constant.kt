@@ -8,4 +8,9 @@ object Constant {
     const val WEST = 55.2F
     const val USERNAME = "mkoppelman"
 
+    // Database
+    const val DATABASE_VERSION = 1
+    const val DATABASE_NAME = "earthquake.db"
+    const val EXPORT_SCHEMA = false
+
 }
