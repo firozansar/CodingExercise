@@ -71,9 +71,20 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpclient_version"
     implementation "com.google.code.gson:gson:$gson_version"
 
+    // Unit Testing
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit_Version"
+    testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "io.mockk:mockk-android:$mockk_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+    testImplementation "androidx.arch.core:core-testing:$core_test_version"
 
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // UI Testing
+    androidTestImplementation "androidx.test:runner:$testRunner_version"
+    androidTestImplementation "androidx.test:rules:$testRules_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_core_version"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_core_version"
+    androidTestImplementation "org.koin:koin-test:$koin_version"
+    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$uiautomator_version"
 }

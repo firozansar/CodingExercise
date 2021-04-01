@@ -7,4 +7,13 @@ class MainViewModel (
         private val earthquakeRepository: EarthquakeRepository,
 ) : ViewModel() {
 
+
+        fun fetchRemoteEarthquakes() {
+
+        }
+
+        fun fetchLocalEarthquakes() {
+
+        }
+
 }
