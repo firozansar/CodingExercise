@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import info.firozansari.codingexercise.data.remote.Earthquake
 import info.firozansari.codingexercise.databinding.EarthquakeItemBinding
 
-class MainAdapter (
+class MainAdapter(
     private val models: List<Earthquake>,
     private val clickListener: MainViewHolder.ItemClickListener
 ) : RecyclerView.Adapter<MainViewHolder>() {
@@ -44,5 +44,4 @@ class MainAdapter (
         super.onViewDetachedFromWindow(holder)
         holder.unbind()
     }
-
 }

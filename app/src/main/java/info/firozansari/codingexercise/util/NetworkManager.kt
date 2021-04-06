@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 
-
 class NetworkManager(private val appContext: Context) {
 
     fun isOnline(): Boolean {
@@ -13,5 +12,4 @@ class NetworkManager(private val appContext: Context) {
         val networkInfo: NetworkInfo? = connMgr.activeNetworkInfo
         return networkInfo?.isConnected == true
     }
-
 }

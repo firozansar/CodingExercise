@@ -8,7 +8,7 @@ import info.firozansari.codingexercise.util.toEarthquakeList
 import info.firozansari.codingexercise.util.toEntityList
 import retrofit2.http.Query
 
-class EarthquakeRepository (
+class EarthquakeRepository(
     private val apiService: ApiService,
     private val earthquakeDao: EarthquakeDao
 ) {
@@ -31,5 +31,4 @@ class EarthquakeRepository (
         earthquakeDao.deleteAll()
         earthquakeDao.insertEarthquakes(items.toEntityList())
     }
-
 }

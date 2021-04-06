@@ -10,8 +10,8 @@ val databaseModule = module {
 
     single {
         Room.databaseBuilder(androidApplication(), EarthquakeDatabase::class.java, DATABASE_NAME)
-        .fallbackToDestructiveMigration()
-        .build()
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     factory { get<EarthquakeDatabase>().getEarthquakeDao() }

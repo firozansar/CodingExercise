@@ -30,7 +30,7 @@ class MainViewHolder(
         val dateText = "Date: " + item.datetime
         binding.itemDate.setTextOrDefault(dateText)
 
-        val locationText = "Location: " +  "%.3f, %.3f".format(item.latitude, item.longitude)
+        val locationText = "Location: " + "%.3f, %.3f".format(item.latitude, item.longitude)
         binding.itemLocation.setTextOrDefault(locationText)
 
         itemView.setOnClickListener {
@@ -46,7 +46,6 @@ class MainViewHolder(
         }
     }
 
-    fun unbind(){
-
+    fun unbind() {
     }
 }

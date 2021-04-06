@@ -3,7 +3,6 @@ package info.firozansari.codingexercise.util
 import info.firozansari.codingexercise.data.local.EarthquakeEntity
 import info.firozansari.codingexercise.data.remote.Earthquake
 
-
 fun List<EarthquakeEntity?>?.toEarthquakeList(): List<Earthquake> {
     val items = mutableListOf<Earthquake>()
     if (this == null) return items.toList()

@@ -12,5 +12,4 @@ object Constant {
     const val DATABASE_VERSION = 1
     const val DATABASE_NAME = "earthquake.db"
     const val EXPORT_SCHEMA = false
-
 }

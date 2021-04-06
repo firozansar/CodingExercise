@@ -3,7 +3,6 @@ package info.firozansari.codingexercise.util
 import info.firozansari.codingexercise.data.remote.ApiResponse
 import info.firozansari.codingexercise.data.remote.Earthquake
 
-
 fun ApiResponse?.toItems(): List<Earthquake> {
     val items = mutableListOf<Earthquake>()
     if (this == null || this.earthquakes == null) return items.toList()

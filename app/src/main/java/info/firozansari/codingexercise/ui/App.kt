@@ -18,6 +18,5 @@ class App : Application() {
             androidContext(this@App)
             modules(listOf(networkModule, databaseModule, repositoryModule, viewModelModule))
         }
-
     }
 }

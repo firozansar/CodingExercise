@@ -1,11 +1,11 @@
 package info.firozansari.codingexercise.ui.main
 
 import android.content.ActivityNotFoundException
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import info.firozansari.codingexercise.R
 import info.firozansari.codingexercise.data.remote.Earthquake
 import info.firozansari.codingexercise.databinding.ActivityMainBinding
@@ -14,7 +14,7 @@ import info.firozansari.codingexercise.util.getMapIntent
 import info.firozansari.codingexercise.util.guardLet
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() , MainViewHolder.ItemClickListener {
+class MainActivity : AppCompatActivity(), MainViewHolder.ItemClickListener {
 
     private val mainViewModel by viewModel<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() , MainViewHolder.ItemClickListener {
     private fun populateError(error: String) {
         showToast(error)
     }
-
 
     private fun showToast(msg: String) {
         val toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT)
