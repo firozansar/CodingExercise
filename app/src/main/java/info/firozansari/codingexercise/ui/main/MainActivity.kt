@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import info.firozansari.codingexercise.R
 import info.firozansari.codingexercise.data.remote.Earthquake
 import info.firozansari.codingexercise.databinding.ActivityMainBinding
-import info.firozansari.codingexercise.util.EarthquakeResult
 import info.firozansari.codingexercise.util.getMapIntent
 import info.firozansari.codingexercise.util.guardLet
 import org.koin.androidx.viewmodel.ext.android.viewModel

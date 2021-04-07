@@ -1,4 +1,4 @@
-package info.firozansari.codingexercise.util
+package info.firozansari.codingexercise.ui.main
 
 import info.firozansari.codingexercise.data.remote.Earthquake
 

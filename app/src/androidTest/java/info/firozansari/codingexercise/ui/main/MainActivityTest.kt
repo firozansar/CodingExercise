@@ -2,7 +2,7 @@ package info.firozansari.codingexercise.ui.main
 
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -20,7 +20,6 @@ import info.firozansari.codingexercise.testutil.BaseMockParser.Companion.EXPECTE
 import info.firozansari.codingexercise.testutil.InstrumentedMockParser
 import info.firozansari.codingexercise.testutil.RecyclerViewItemCountAssertion
 import info.firozansari.codingexercise.ui.main.MockMainViewModel.quakesResult
-import info.firozansari.codingexercise.util.EarthquakeResult
 import info.firozansari.codingexercise.util.getGoogleMapsUrlAt
 import io.mockk.every
 import org.hamcrest.Matchers
@@ -66,7 +65,7 @@ class MainActivityTest : KoinTest {
         launchActivityAndMockLiveData()
 
         // then
-        Espresso.onView(withId(R.id.main_list))
+        onView(withId(R.id.main_list))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
@@ -80,9 +79,9 @@ class MainActivityTest : KoinTest {
         launchActivityAndMockLiveData()
 
         // then
-        Espresso.onView(withId(R.id.main_list))
+        onView(withId(R.id.main_list))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(withId(R.id.main_list)).check(
+        onView(withId(R.id.main_list)).check(
             RecyclerViewItemCountAssertion(EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID)
         )
     }
@@ -114,7 +113,7 @@ class MainActivityTest : KoinTest {
     }
 
     private fun clickRecyclerAt(position: Int) {
-        Espresso.onView(withId(R.id.main_list)).perform(
+        onView(withId(R.id.main_list)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 position,
                 ViewActions.click()

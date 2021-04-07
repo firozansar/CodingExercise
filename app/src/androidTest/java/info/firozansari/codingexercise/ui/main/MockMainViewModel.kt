@@ -2,7 +2,6 @@ package info.firozansari.codingexercise.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import info.firozansari.codingexercise.util.EarthquakeResult
 import io.mockk.mockk
 
 object MockMainViewModel {

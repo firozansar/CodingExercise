@@ -5,13 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import info.firozansari.codingexercise.data.repository.EarthquakeRepository
-import info.firozansari.codingexercise.util.Constant.EAST
-import info.firozansari.codingexercise.util.Constant.NORTH
-import info.firozansari.codingexercise.util.Constant.SOUTH
-import info.firozansari.codingexercise.util.Constant.USERNAME
-import info.firozansari.codingexercise.util.Constant.WEST
-import info.firozansari.codingexercise.util.EarthquakeResult
-import info.firozansari.codingexercise.util.NetworkManager
+import info.firozansari.codingexercise.data.remote.NetworkManager
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -21,6 +15,11 @@ class MainViewModel(
 
     companion object {
         const val ERROR_MESSAGE = "Something went wrong"
+        const val NORTH = 44.1F
+        const val SOUTH = -9.9F
+        const val EAST = -22.4F
+        const val WEST = 55.2F
+        const val USERNAME = "mkoppelman"
     }
 
     private val mQuakesResult = MutableLiveData<EarthquakeResult>()

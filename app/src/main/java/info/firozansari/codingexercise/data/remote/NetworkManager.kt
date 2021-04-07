@@ -1,4 +1,4 @@
-package info.firozansari.codingexercise.util
+package info.firozansari.codingexercise.data.remote
 
 import android.content.Context
 import android.net.ConnectivityManager
