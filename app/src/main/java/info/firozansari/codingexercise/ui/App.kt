@@ -14,7 +14,7 @@ class App : Application() {
         super.onCreate()
 
         startKoin {
-            printLogger() // Koin Logger
+            printLogger()
             androidContext(this@App)
             modules(listOf(networkModule, databaseModule, repositoryModule, viewModelModule))
         }

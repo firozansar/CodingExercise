@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import info.firozansari.codingexercise.data.repository.EarthquakeRepository
 import info.firozansari.codingexercise.data.remote.NetworkManager
+import info.firozansari.codingexercise.data.repository.EarthquakeRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-        private val earthquakeRepository: EarthquakeRepository,
-        private val networkManager: NetworkManager
+    private val earthquakeRepository: EarthquakeRepository,
+    private val networkManager: NetworkManager
 ) : ViewModel() {
 
     companion object {
