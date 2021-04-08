@@ -1,38 +1,37 @@
-package info.firozansari.codingexercise.testutil
+package info.firozansari.codingexercise
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
+import info.firozansari.codingexercise.data.local.EarthquakeEntity
 import info.firozansari.codingexercise.data.remote.ApiResponse
 import info.firozansari.codingexercise.data.remote.Earthquake
+import info.firozansari.codingexercise.util.toEntityList
 import info.firozansari.codingexercise.util.toItems
 
-abstract class BaseMockParser {
+ open class BaseMockParser {
     companion object {
         const val EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID = 10
         private const val TEST_QUAKES_FILE_VALID_ITEMS =
             "test_earthquake_data_valid_items.json"
     }
 
-    abstract fun getFileAsString(filePath: String): String
+    fun getFileAsString(filePath: String): String {
+        return ClassLoader.getSystemResource(filePath).readText()
+    }
 
-    // get quake core items
+    fun getMockQuake(): Earthquake = getMockQuakeList().first()
 
-    fun getMockQuake(): Earthquake = getMockQuakeFeedAllIdsValid().toItems()[0]
+    fun getMockQuakeList(): List<Earthquake> = getMockQuakeFeedAllIdsValid().toItems()
 
-    fun getMockQuakesFromFeedWithAllItemsValid(): ApiResponse =
-        ApiResponse(getMockQuakeFeedAllIdsValid().toItems())
-
-    // get json object
+    fun getMockDataFromDBWithAllItemsValid(): List<EarthquakeEntity> =
+        getMockQuakeFeedAllIdsValid().toItems().toEntityList()
 
     fun getMockQuakeFeedAllIdsValid(): ApiResponse =
         getMockApiResponse(getMockQuakeDataAllIdsValid())
 
-    // get raw string json
-
     private fun getMockQuakeDataAllIdsValid(): String =
         getFileAsString(TEST_QUAKES_FILE_VALID_ITEMS)
-
 
     private fun getMockApiResponse(text: String): ApiResponse {
         return convertToApiResponse(text)
@@ -43,5 +42,4 @@ abstract class BaseMockParser {
         val json: JsonObject = gson.fromJson(jsonString, JsonObject::class.java)
         return Gson().fromJson(json, T::class.java)
     }
-
 }

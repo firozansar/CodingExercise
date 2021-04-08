@@ -6,7 +6,6 @@ import info.firozansari.codingexercise.data.local.EarthquakeDao
 import info.firozansari.codingexercise.data.local.EarthquakeEntity
 import info.firozansari.codingexercise.data.remote.ApiService
 import info.firozansari.codingexercise.data.remote.Earthquake
-import info.firozansari.codingexercise.testutil.TestData
 import info.firozansari.codingexercise.testutil.UnitTestSetup
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -19,30 +18,33 @@ import org.mockito.Mockito
 @RunWith(JUnit4::class)
 class EarthquakeRepositoryTest : UnitTestSetup() {
 
+    private val mockNorthBound = 44.1f
+    private val mockSouthBound = -9.9f
+    private val mockEastBound = -22.4f
+    private val mockWestBound = 55.2f
+    private val mockUsername = "testuser"
+
     @Mock
     private lateinit var mockApiService: ApiService
 
     @Mock
     private lateinit var mockDao: EarthquakeDao
 
-    private lateinit var subject: EarthquakeRepository
+    private var subject: EarthquakeRepository
 
-    private val testData: TestData = TestData()
 
     init {
         initialise()
-    }
-
-    override fun initialiseClassUnderTest() {
         subject = EarthquakeRepository(mockApiService, mockDao)
     }
+
 
     @Test
     fun `get local earthquake list`() {
         // when
         runBlocking {
             // given
-            val mockEntityList = testData.getMockDataFromDBWithAllItemsValid()
+            val mockEntityList = getMockDataFromDBWithAllItemsValid()
             Mockito.`when`(mockDao.getAllEarthquakes()).thenReturn(mockEntityList)
 
             // when
@@ -59,31 +61,31 @@ class EarthquakeRepositoryTest : UnitTestSetup() {
         // when
         runBlocking {
             // given
-            val mockFeed = testData.getMockQuakeFeedAllIdsValid()
+            val mockFeed = getMockQuakeFeedAllIdsValid()
             Mockito.`when`(mockApiService.getEarthquakes(
-                testData.mockNorthBound,
-                testData.mockSouthBound,
-                testData.mockEastBound,
-                testData.mockWestBound,
-                testData.mockUsername
+                mockNorthBound,
+                mockSouthBound,
+                mockEastBound,
+                mockWestBound,
+                mockUsername
             )).thenReturn(mockFeed)
 
             // when
             val remoteItems = subject.getRemoteEarthquakes(
-                testData.mockNorthBound,
-                testData.mockSouthBound,
-                testData.mockEastBound,
-                testData.mockWestBound,
-                testData.mockUsername
+                mockNorthBound,
+                mockSouthBound,
+                mockEastBound,
+                mockWestBound,
+                mockUsername
             )
 
             // then
             verify(mockApiService, times(1)).getEarthquakes(
-                testData.mockNorthBound,
-                testData.mockSouthBound,
-                testData.mockEastBound,
-                testData.mockWestBound,
-                testData.mockUsername
+                mockNorthBound,
+                mockSouthBound,
+                mockEastBound,
+                mockWestBound,
+                mockUsername
             )
 
             assertEquals(remoteItems, mockFeed)
