@@ -6,8 +6,8 @@ import com.google.gson.JsonObject
 import info.firozansari.codingexercise.data.local.EarthquakeEntity
 import info.firozansari.codingexercise.data.remote.ApiResponse
 import info.firozansari.codingexercise.data.remote.Earthquake
-import info.firozansari.codingexercise.util.toEntityList
-import info.firozansari.codingexercise.util.toItems
+import info.firozansari.codingexercise.data.local.toEntityList
+import info.firozansari.codingexercise.data.remote.toItems
 
 abstract class BaseMockParser {
     companion object {

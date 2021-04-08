@@ -1,7 +1,4 @@
-package info.firozansari.codingexercise.util
-
-import info.firozansari.codingexercise.data.remote.ApiResponse
-import info.firozansari.codingexercise.data.remote.Earthquake
+package info.firozansari.codingexercise.data.remote
 
 fun ApiResponse?.toItems(): List<Earthquake> {
     val items = mutableListOf<Earthquake>()

@@ -1,11 +1,11 @@
 package info.firozansari.codingexercise.data.repository
 
 import info.firozansari.codingexercise.data.local.EarthquakeDao
+import info.firozansari.codingexercise.data.local.toEarthquakeList
+import info.firozansari.codingexercise.data.local.toEntityList
 import info.firozansari.codingexercise.data.remote.ApiResponse
 import info.firozansari.codingexercise.data.remote.ApiService
 import info.firozansari.codingexercise.data.remote.Earthquake
-import info.firozansari.codingexercise.util.toEarthquakeList
-import info.firozansari.codingexercise.util.toEntityList
 import retrofit2.http.Query
 
 class EarthquakeRepository(
