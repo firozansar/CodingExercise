@@ -18,12 +18,6 @@ import org.mockito.Mockito
 @RunWith(JUnit4::class)
 class EarthquakeRepositoryTest : UnitTestSetup() {
 
-    private val mockNorthBound = 44.1f
-    private val mockSouthBound = -9.9f
-    private val mockEastBound = -22.4f
-    private val mockWestBound = 55.2f
-    private val mockUsername = "testuser"
-
     @Mock
     private lateinit var mockApiService: ApiService
 

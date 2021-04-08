@@ -18,6 +18,7 @@ import info.firozansari.codingexercise.BaseMockParser
 import info.firozansari.codingexercise.R
 import info.firozansari.codingexercise.data.remote.Earthquake
 import info.firozansari.codingexercise.BaseMockParser.Companion.EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID
+import info.firozansari.codingexercise.testutil.InstrumentedMockParser
 import info.firozansari.codingexercise.testutil.RecyclerViewItemCountAssertion
 import info.firozansari.codingexercise.ui.main.MockMainViewModel.quakesResult
 import info.firozansari.codingexercise.util.getGoogleMapsUrlAt
@@ -40,7 +41,7 @@ class MainActivityTest : KoinTest {
             false, false
         )
 
-    private val mockParser = BaseMockParser()
+    private val mockParser = InstrumentedMockParser()
     private lateinit var mockViewModel: MainViewModel
     private lateinit var mockQuakeItems: List<Earthquake>
     private lateinit var quakesSuccess: EarthquakeResult.Success

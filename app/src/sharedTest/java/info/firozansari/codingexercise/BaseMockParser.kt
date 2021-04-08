@@ -9,16 +9,14 @@ import info.firozansari.codingexercise.data.remote.Earthquake
 import info.firozansari.codingexercise.util.toEntityList
 import info.firozansari.codingexercise.util.toItems
 
- open class BaseMockParser {
+abstract class BaseMockParser {
     companion object {
         const val EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID = 10
         private const val TEST_QUAKES_FILE_VALID_ITEMS =
             "test_earthquake_data_valid_items.json"
     }
 
-    fun getFileAsString(filePath: String): String {
-        return ClassLoader.getSystemResource(filePath).readText()
-    }
+    abstract fun getFileAsString(filePath: String): String
 
     fun getMockQuake(): Earthquake = getMockQuakeList().first()
 
