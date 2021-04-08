@@ -14,7 +14,11 @@ import org.koin.core.context.stopKoin
 
 open class InstrumentedRunner : AndroidJUnitRunner() {
 
-    @Throws(InstantiationException::class, IllegalAccessException::class, ClassNotFoundException::class)
+    @Throws(
+        InstantiationException::class,
+        IllegalAccessException::class,
+        ClassNotFoundException::class
+    )
     override fun newApplication(cl: ClassLoader, className: String, context: Context): Application {
         return Instrumentation.newApplication(AppTest::class.java, context)
     }

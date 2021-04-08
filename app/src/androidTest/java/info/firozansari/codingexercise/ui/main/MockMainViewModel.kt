@@ -15,5 +15,4 @@ object MockMainViewModel {
     fun getMockMainViewModel(): MainViewModel {
         return mockMainViewModel
     }
-
 }

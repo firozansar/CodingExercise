@@ -26,12 +26,10 @@ class EarthquakeRepositoryTest : UnitTestSetup() {
 
     private var subject: EarthquakeRepository
 
-
     init {
         initialise()
         subject = EarthquakeRepository(mockApiService, mockDao)
     }
-
 
     @Test
     fun `get local earthquake list`() {
@@ -56,13 +54,15 @@ class EarthquakeRepositoryTest : UnitTestSetup() {
         runBlocking {
             // given
             val mockFeed = getMockQuakeFeedAllIdsValid()
-            Mockito.`when`(mockApiService.getEarthquakes(
-                mockNorthBound,
-                mockSouthBound,
-                mockEastBound,
-                mockWestBound,
-                mockUsername
-            )).thenReturn(mockFeed)
+            Mockito.`when`(
+                mockApiService.getEarthquakes(
+                    mockNorthBound,
+                    mockSouthBound,
+                    mockEastBound,
+                    mockWestBound,
+                    mockUsername
+                )
+            ).thenReturn(mockFeed)
 
             // when
             val remoteItems = subject.getRemoteEarthquakes(
@@ -117,5 +117,4 @@ class EarthquakeRepositoryTest : UnitTestSetup() {
         assertEquals(expected.source, actual.source)
         assertEquals(expected.magnitude, actual.magnitude)
     }
-
 }

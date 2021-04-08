@@ -14,10 +14,9 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import androidx.test.uiautomator.UiDevice
-import info.firozansari.codingexercise.BaseMockParser
+import info.firozansari.codingexercise.BaseMockParser.Companion.EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID
 import info.firozansari.codingexercise.R
 import info.firozansari.codingexercise.data.remote.Earthquake
-import info.firozansari.codingexercise.BaseMockParser.Companion.EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID
 import info.firozansari.codingexercise.testutil.InstrumentedMockParser
 import info.firozansari.codingexercise.testutil.RecyclerViewItemCountAssertion
 import info.firozansari.codingexercise.ui.main.MockMainViewModel.quakesResult
@@ -46,7 +45,6 @@ class MainActivityTest : KoinTest {
     private lateinit var mockQuakeItems: List<Earthquake>
     private lateinit var quakesSuccess: EarthquakeResult.Success
 
-
     @Before
     fun setUp() {
         Intents.init()
@@ -54,7 +52,6 @@ class MainActivityTest : KoinTest {
         quakesSuccess = EarthquakeResult.Success(mockQuakeItems)
         mockViewModel = MockMainViewModel.getMockMainViewModel()
         every { mockViewModel.fetchEarthquakes() } returns Unit
-
     }
 
     @Test
@@ -68,7 +65,6 @@ class MainActivityTest : KoinTest {
         // then
         onView(withId(R.id.main_list))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
     }
 
     @Test
@@ -86,7 +82,6 @@ class MainActivityTest : KoinTest {
             RecyclerViewItemCountAssertion(EXPECTED_NUM_QUAKES_WHEN_ALL_IDS_VALID)
         )
     }
-
 
     @Test
     fun main_list_item_click_opens_google_maps() {
@@ -133,5 +128,4 @@ class MainActivityTest : KoinTest {
     fun tearDown() {
         Intents.release()
     }
-
 }

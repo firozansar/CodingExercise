@@ -16,7 +16,6 @@ open class UnitTestSetup : BaseMockParser() {
     val mockWestBound = 55.2f
     val mockUsername = "testuser"
 
-
     fun initialise() {
         MockitoAnnotations.initMocks(this)
     }
